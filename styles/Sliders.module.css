@@ -1,0 +1,49 @@
+.platform {
+    background: #870000; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to bottom right,
+        #190a05,
+        #870000
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to bottom right,
+        #190a05,
+        #870000
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.genre {
+    background: #870000; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #870000,
+        #190a05
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    border: 3px solid #870000;
+}
+
+.activeslide {
+    font-size: 2rem;
+    color: lime;
+    font-weigt: 800;
+}
+
+.selectbutton {
+    background-color: #870000;
+    color: white;
+    font-size: 20px;
+    padding: 10px 60px;
+    border-radius: 5px;
+    cursor: pointer;
+}

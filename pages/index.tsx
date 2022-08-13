@@ -1,8 +1,48 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import { getPlatformData } from '@/pages/api/platforms'
+import { getGenreData } from '@/pages/api/genres'
 import { trpc } from '@/utils/trpc';
+import Sliders from '@/components/Sliders';
 
-const Home: NextPage = () => {
-  const { data, isLoading } = trpc.useQuery(["hello", { text: "Polymeros"}])
+type Platform = {
+  games: Array<object>,
+  games_count: number,
+  id: number,
+  image: string,
+  image_background: string,
+  name: string,
+  slug: string,
+  year_end: string,
+  year_start: string
+}
+
+type Genre = {
+  games: Array<object>,
+  games_count: number,
+  id: number,
+  image_background: string,
+  name: string,
+  slug: string
+}
+type HomeProps = {
+  platforms: Array<Platform>,
+  genres: Array<Genre>
+}
+
+const Home: React.FC<HomeProps> = ( props: HomeProps) => {
+  const { platforms, genres } = props;
+  const clickHandler = (e: React.MouseEvent, sliders: Array<number>) => {
+    // console.log(sliders[0]);
+    // console.log(sliders[1]);
+    //isLoading = true;
+  }
+  // if(1 === 1) return <div>LOADING....</div>
+
+  if(1 === 1) return <Sliders 
+    clickHandler={(e: React.MouseEvent, sliders: Array<number>) => clickHandler(e, sliders)}
+    platforms={platforms}
+    genres={genres}
+    />;
   return (
     <div
       className='h-screen w-screen flex flex-col justify-center items-center'
@@ -31,6 +71,19 @@ const Home: NextPage = () => {
       </div>
     </div>
   );
+}
+
+
+export async function getStaticProps(context: GetStaticPropsContext) {
+  const platformData = await getPlatformData();
+  const genreData = await getGenreData();
+  // console.log(platformData);
+  // console.log(genreData);
+  return { props: {
+    platforms: platformData,
+    genres: genreData
+  }
+};
 }
 
 export default Home

@@ -4,17 +4,12 @@ import { z } from 'zod';
 
 export const appRouter = trpc
     .router()
-    .query('hello', {
-        input: z
-            .object({
-                text: z.string().nullish(),
-            })
-            .nullish(),
-        resolve({ input }) {
-            return {
-                greeting: `hello ${input?.text ?? 'world'}`,
-            };
-        },
+    .query('get-games', {
+        input: z.object({ platform: z.number(), genre: z.number() }),
+        async resolve({ input }) {
+            console.log(input);
+            return input;
+        }
     });
 
 // export type definition of API
