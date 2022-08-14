@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-// import platforms from '@/public/platforms.json';
-// import genres from '@/public/genres.json';
 import { Swiper, SwiperSlide, } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper';
 
@@ -10,35 +8,6 @@ import 'swiper/css';
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
-
-type Platform = {
-    games: Array<object>,
-    games_count: number,
-    id: number,
-    image: string,
-    image_background: string,
-    name: string,
-    slug: string,
-    year_end: string,
-    year_start: string
-}
-
-type Genre = {
-    games: Array<object>,
-    games_count: number,
-    id: number,
-    image_background: string,
-    name: string,
-    slug: string
-}
-
-type sliderProps = {
-    clickHandler: (e: React.MouseEvent, id: Array<number>) => void,
-    platforms: Array<Platform>,
-    genres: Array<Genre>
-}
-
-
 
 const Sliders: React.FC<sliderProps> = (props) => {
 

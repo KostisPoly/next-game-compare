@@ -7,7 +7,7 @@ export const appRouter = trpc
     .query('get-games', {
         input: z.object({ platform: z.number(), genre: z.number() }),
         async resolve({ input }) {
-            console.log(input);
+            // console.log(input);
             return input;
         }
     });
