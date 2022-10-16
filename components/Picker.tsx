@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCube } from 'swiper';
+import { EffectCube, Lazy } from 'swiper';
 
 import styles from '@/styles/Picker.module.css';
 
@@ -8,6 +8,7 @@ import 'swiper/css';
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-cube";
+import "swiper/css/lazy";
 
 const Picker: React.FC<pickerProps> = (props) => {
 
@@ -30,6 +31,7 @@ const Picker: React.FC<pickerProps> = (props) => {
                 >
                     <Swiper
                         effect={"cube"}
+                        lazy={true}
                         grabCursor={true}
                         cubeEffect={{
                             shadow: true,
@@ -45,12 +47,13 @@ const Picker: React.FC<pickerProps> = (props) => {
                             onPickerChange(1, e.activeIndex);
                         }}
                         pagination={false}
-                        modules={[EffectCube]}
+                        modules={[EffectCube, Lazy]}
                         className="firstSwiper"
                     >
                         {
                             firstList.map((el, i) => (
                                 <SwiperSlide
+                                    className='swiper-lazy'
                                     key={el.id}
                                     style={{
                                         background: `rgba(135, 0, 0, .4) url(${el.background_image}) center/cover no-repeat fixed`,
