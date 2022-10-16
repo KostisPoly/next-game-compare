@@ -1,3 +1,7 @@
+## Personal Note
+
+This is a test App messing around with [Next.js](https://nextjs.org/) and using [RAWG_API](https://rawg.io/apidocs). All credits to [RAWG](https://rawg.io/) for all asset and data concerning games. As far as the App, it is a rather simple "game" of comparing video games and picking the one you like the most. Follow RAWG link for more video games and news.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

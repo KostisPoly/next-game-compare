@@ -4,6 +4,7 @@ const GameDetails: React.FC<GameDetails> = (props) => {
 
     const {
         name,
+        slug,
         description_raw,
         parent_platforms,
         genres
@@ -28,6 +29,7 @@ const GameDetails: React.FC<GameDetails> = (props) => {
                         >{el.name}</div>
                     )
                 )}
+                <div><a href={`https://rawg.io/games/${slug}`} target="_blank" rel="noreferrer">Check out {name} on RAWG</a></div>
             </div>
         )
     }
