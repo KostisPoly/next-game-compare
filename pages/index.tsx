@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import type { NextPage, GetStaticPropsContext } from 'next'
+import Link from 'next/link'
 import { getPlatformData } from '@/pages/api/platforms'
 import { getGenreData } from '@/pages/api/genres'
 import { getGamesData } from '@/pages/api/games'
@@ -7,9 +8,17 @@ import Sliders from '@/components/Sliders';
 import Picker from '@/components/Picker';
 
 const Home: React.FC<HomeProps> = (props: HomeProps) => {
+
+  const nodeRef = useRef(null);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [firstList, setFirstList] = useState<Array<Games>>([]);
   const [secondList, setSecondList] = useState<Array<Games>>([]);
+
+  const [firstActive, setFirstActive] = useState<number>(0);
+  const [secondActive, setSecondActive] = useState<number>(0);
+  const [resultId, setResultId] = useState<number>(0);
+  
   const { platforms, genres } = props;
 
   const clickHandler = async (e: React.MouseEvent, sliders: Array<number>) => {
@@ -26,6 +35,24 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
     setIsLoading(false)
   }
 
+  const swiperChangeHandler = ( swiper : number, index : number) => {
+    if ( swiper === 1 ) {
+      setFirstActive(index)
+    } else {
+      setSecondActive(index);
+    }
+    
+  }
+
+  const swiperEndHandler = (cube: number) => {
+    cube === 1 ? setResultId(secondList[secondActive].id) : setResultId(firstList[firstActive].id);
+}
+
+  if ( resultId > 0 ) return <Link  ref ={nodeRef}  href={{
+    pathname:'/result', query: { id: resultId }
+}}
+>AND THE WINNER IS...</Link>
+
   if (firstList.length === 0 && !isLoading) return <Sliders
     clickHandler={(e: React.MouseEvent, sliders: Array<number>) => clickHandler(e, sliders)}
     platforms={platforms}
@@ -37,6 +64,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
       <Picker
         firstList={firstList}
         secondList={secondList}
+        onPickerEnd={swiperEndHandler}
+        onPickerChange={swiperChangeHandler}
       />
     );
   }

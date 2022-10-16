@@ -1,5 +1,5 @@
 // import jsonFile from '@/public/games.json'
-// console.log(jsonFile);
+
 const toKeep = ['background_image',
     'id',
     'metacritic',

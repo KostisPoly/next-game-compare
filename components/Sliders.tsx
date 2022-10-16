@@ -67,7 +67,7 @@ const Sliders: React.FC<sliderProps> = (props) => {
                         props.clickHandler(e, [platformSwiper, genreSwiper]);
                     }}
                 >
-                    BEGIN
+                    Pick Platform And Genre
                 </button>
             </div>
             

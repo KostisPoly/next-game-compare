@@ -2,6 +2,15 @@ const pageSize: number = 40;
 import { getRandomPages } from '@/utils/randomize'
 import { filterArray } from '@/utils/filter'
 
+export async function getGameDetails(gameId: string) {
+
+    const response = await fetch(
+        `https://api.rawg.io/api/games/${gameId}?key=9abaeff8bd85491fb09a184b1aaf4ff4`
+    );
+    const jsonData = await response.json();
+    return jsonData;
+}
+
 export async function getGamesData(platformId: number, genreId: number) {
     const pages = getRandomPages();
     const response = await fetch(

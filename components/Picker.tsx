@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Swiper, SwiperSlide, } from 'swiper/react';
-import { EffectCube, Pagination, Navigation } from 'swiper';
+import React, { useRef, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCube } from 'swiper';
 
 import styles from '@/styles/Picker.module.css';
 
@@ -11,7 +11,7 @@ import "swiper/css/effect-cube";
 
 const Picker: React.FC<pickerProps> = (props) => {
 
-    const { firstList, secondList } = props;
+    const { firstList, secondList, onPickerEnd, onPickerChange } = props;
 
     return (
         <div
@@ -37,10 +37,16 @@ const Picker: React.FC<pickerProps> = (props) => {
                             shadowOffset: 20,
                             shadowScale: 0.94,
                         }}
-                        onReachEnd={() => {console.log('ENDED!!!')}}
+                        onReachEnd={(e) => {
+                            onPickerEnd(1);
+
+                        }}
+                        onSlideChange={(e) => {
+                            onPickerChange(1, e.activeIndex);
+                        }}
                         pagination={false}
                         modules={[EffectCube]}
-                        className="mySwiper"
+                        className="firstSwiper"
                     >
                         {
                             firstList.map((el, i) => (
@@ -69,7 +75,11 @@ const Picker: React.FC<pickerProps> = (props) => {
                 </div>
                 <div
                     className='m-8'
-                >VS</div>
+                >
+                    <div>
+                        VS
+                    </div>
+                </div>
                 <div
                     className='w-96 h-96 bg-red-500'
                 >
@@ -82,9 +92,15 @@ const Picker: React.FC<pickerProps> = (props) => {
                             shadowOffset: 20,
                             shadowScale: 0.94,
                         }}
+                        onReachEnd={(e) => {
+                            onPickerEnd(2);
+                        }}
+                        onSlideChange={(e) => {
+                            onPickerChange(2, e.activeIndex);
+                        }}
                         pagination={false}
                         modules={[EffectCube]}
-                        className="mySwiper"
+                        className="secondSwiper"
                     >
                         {
                             secondList.map((el, i) => (
